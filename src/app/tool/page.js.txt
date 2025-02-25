@@ -1,0 +1,47 @@
+import { useState } from 'react';
+
+export default function BooleanGenerator() {
+  const [jobTitle, setJobTitle] = useState('');
+  const [keywords, setKeywords] = useState('');
+  const [query, setQuery] = useState('');
+
+  const generateBoolean = () => {
+    let parts = [];
+    if (jobTitle) parts.push(`"${jobTitle}"`);
+    if (keywords) parts.push(`(${keywords.split(',').map(k => `"${k.trim()}"`).join(" OR ")})`);
+    setQuery(parts.join(" AND "));
+  };
+
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white p-6">
+      <h1 className="text-3xl font-bold">Generate a Boolean Search</h1>
+
+      <div className="w-full max-w-lg mt-6">
+        <input
+          type="text"
+          placeholder="Job Title"
+          value={jobTitle}
+          onChange={(e) => setJobTitle(e.target.value)}
+          className="w-full p-3 bg-gray-800 rounded-md text-white mb-4"
+        />
+        <input
+          type="text"
+          placeholder="Keywords (comma-separated)"
+          value={keywords}
+          onChange={(e) => setKeywords(e.target.value)}
+          className="w-full p-3 bg-gray-800 rounded-md text-white mb-4"
+        />
+        <button onClick={generateBoolean} className="w-full py-3 bg-blue-500 rounded-md hover:bg-blue-600">
+          Generate
+        </button>
+      </div>
+
+      <textarea
+        readOnly
+        value={query}
+        className="w-full max-w-lg mt-6 p-3 bg-gray-800 rounded-md text-white"
+        placeholder="Boolean query will appear here..."
+      />
+    </div>
+  );
+}

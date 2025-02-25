@@ -1,0 +1,21 @@
+export default function Download() {
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white p-6">
+      <h1 className="text-3xl font-bold">Download BoolForge</h1>
+      <p className="mt-4 text-lg">Get the Chrome Extension to streamline Boolean searches.</p>
+
+      <a
+        href="https://chrome.google.com/webstore/detail/YOUR_EXTENSION_ID"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-6 px-6 py-3 bg-green-500 rounded-md hover:bg-green-600 transition"
+      >
+        Install on Chrome
+      </a>
+
+      <p className="mt-8 text-sm opacity-80">
+        BoolForge is free forever. Improve your sourcing today!
+      </p>
+    </div>
+  );
+}
